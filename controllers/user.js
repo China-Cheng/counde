@@ -2,7 +2,7 @@
 
 // 渲染登录页面   
 exports.showSingnin = (req,res) => {
-    res.send('showSingnin')
+    res.render('signin.html')
 }
 //   处理登录请求
 exports.handleSignin = (req,res) => {
