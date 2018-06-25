@@ -30,7 +30,7 @@
                 <label for="password">密码</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-success btn-block">注册</button>
+            <button type="submit"  class="btn btn-success btn-block">注册</button>
         </form>
         <div class="message">
             <p>已有账号? <a href="/login">点击登录</a>.</p>
@@ -38,6 +38,38 @@
     </div>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script>
+        //  提交表单
+        //     1.客户端 发送表单
+        //         1.1获取表单数据
+                    //  1.1.1验证表单
+        //         1.2监听submit事件
+        //         1.3ajax请求post 请求到后台
+        //     2.服务端 获取到表单数据
+        //         1.1获取到请求体中 req.body中的数据
+        //         1.2验证
+        //             1.2.1验证格式是否正确
+        //             1.2.2验证数据库中是否有这个数据
+        //         1.3把首页返回到前端
+       $("#signup_form").on("submit",function (e) {
+            e.preventDefault();
+            var formdata = $("#signup_form").serialize()
+            console.log(formdata)
+            $.ajax({
+                url: '/signup',
+                type: "POST",
+                data: formdata,
+                dataType: "text",
+                success: function(results) {
+                    alert('注册成功')
+                    location.href = './signin'
+                },
+                error: function(err) {
+                    if (err) throw err
+                }
+            })
+
+        })
+      
     </script>
 </body>
 
